@@ -2,6 +2,8 @@
 
 ## An Ecommerce personal project
 
+## Built with NODEJS, EXPRESS, MONGODB
+
 View live link below
 [www.mamazee.com](https://mamazee.netlify.app).
 
