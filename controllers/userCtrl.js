@@ -272,7 +272,6 @@ const userCtrl = {
       const history = await Payments.find({ user_id: req.user.id });
 
       res.json(history);
-      console.log(history);
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }
@@ -409,7 +408,7 @@ const userCtrl = {
 
 const createActivationToken = (payload) => {
   return jwt.sign(payload, process.env.ACTIVATION_TOKEN_SECRET, {
-    expiresIn: '5m',
+    expiresIn: '15m',
   });
 };
 
