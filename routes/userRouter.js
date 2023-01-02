@@ -1,42 +1,38 @@
-const router = require('express').Router()
-const userCtrl = require('../controllers/userCtrl')
-const auth = require('../middleware/auth')
-const authAdmin = require('../middleware/authAdmin')
+const router = require('express').Router();
+const userCtrl = require('../controllers/userCtrl');
+const auth = require('../middleware/auth');
+const authAdmin = require('../middleware/authAdmin');
 
+router.post('/register', userCtrl.register);
 
+router.post('/activation', userCtrl.activateEmail);
 
-router.post('/register', userCtrl.register)
+router.post('/login', userCtrl.login);
 
-router.post('/activation', userCtrl.activateEmail)
+router.post('/forgot', userCtrl.forgotPassword);
 
-router.post('/login', userCtrl.login)
+router.post('/reset', auth, userCtrl.resetPassword);
 
-router.post('/forgot', userCtrl.forgotPassword)
+router.post('/refreshtoken', userCtrl.getAccessToken);
 
-router.post('/reset', auth, userCtrl.resetPassword)
+router.get('/logout', userCtrl.logout);
 
-router.post('/refreshtoken', userCtrl.getAccessToken)
+router.get('/refresh_token', userCtrl.refreshToken);
 
-router.get('/logout', userCtrl.logout)
+router.get('/infor', auth, userCtrl.getUser);
 
-router.get('/refresh_token', userCtrl.refreshToken)
+router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor);
 
-router.get('/infor', auth, userCtrl.getUser)
+router.patch('/update', auth, userCtrl.updateUser);
 
-router.get('/all_infor', auth, authAdmin, userCtrl.getUsersAllInfor)
+router.patch('/addcart', auth, userCtrl.addCart);
 
-router.patch('/update', auth, userCtrl.updateUser)
+router.get('/history', auth, userCtrl.history);
 
-router.patch('/addcart', auth, userCtrl.addCart)
-
-router.get('/history', auth, userCtrl.history)
-
-router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser)
-
+router.delete('/delete/:id', auth, authAdmin, userCtrl.deleteUser);
 
 // The section of the social login
-router.post('/google_login', userCtrl.googleLogin)
-router.post('/facebook_login', userCtrl.facebookLogin)
+router.post('/google_login', userCtrl.googleLogin);
+router.post('/facebook_login', userCtrl.facebookLogin);
 
-
-module.exports = router
+module.exports = router;
