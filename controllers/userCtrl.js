@@ -176,6 +176,13 @@ const userCtrl = {
       if (!user)
         return res.status(400).json({ msg: 'This email does not exists.' });
 
+      if (email === 'brightlayo11@gmail.com')
+        return res
+          .status(400)
+          .json({
+            msg: 'To change your password, register with your own email...Thanks',
+          });
+
       const access_token = createAccessToken({ id: user._id });
       const url = `${CLIENT_URL}/user/reset/${access_token}`;
 
